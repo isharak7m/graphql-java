@@ -546,16 +546,7 @@ public class SchemaPrinter {
             if (!options.isIncludeScalars()) {
                 return;
             }
-            boolean printScalar;
-            if (ScalarInfo.isGraphqlSpecifiedScalar(type)) {
-                printScalar = false;
-                //noinspection RedundantIfStatement
-                if (!ScalarInfo.isGraphqlSpecifiedScalar(type)) {
-                    printScalar = true;
-                }
-            } else {
-                printScalar = true;
-            }
+            boolean printScalar = !ScalarInfo.isGraphqlSpecifiedScalar(type);
             if (printScalar) {
                 if (shouldPrintAsAst(type.getDefinition())) {
                     printAsAst(out, type.getDefinition(), type.getExtensionDefinitions());
